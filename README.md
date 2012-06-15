@@ -2,6 +2,16 @@
 
 博客地址：[https://mechatsvip.github.io/](https://mechatsvip.github.io/)
 
+## 本地预览
+
+站点是纯静态页面，克隆后起一个本地服务器即可预览：
+
+```bash
+python3 -m http.server 8000
+```
+
+然后访问 <http://localhost:8000/> 。页面通过 `assets/app.js` 调用 GitHub API 拉取 Issues 内容，本地预览时同样有效。
+
 ## 文章目录
 
 
