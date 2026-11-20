@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f6f7f2"><meta name="description" content="Mecha 的个人博客，记录想法、生活与值得分享的瞬间。">
-  <title data-i18n="pageTitle">Mecha 的博客</title><script>try{document.documentElement.dataset.theme=localStorage.getItem('mecha-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch(e){}</script>
-  <link rel="stylesheet" href="assets/site.css"><script src="assets/app.js" defer></script>
+  <title data-i18n="pageTitle">Mecha 的博客</title>
+  <script>try{document.documentElement.dataset.theme=localStorage.getItem('mecha-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch(e){}</script>
+  <link rel="stylesheet" href="assets/site.css"><script src="assets/app.js?v=20261120b" defer></script>
 </head>
 <body data-page="home">
   <header class="site-header"><div class="wrap header-inner">
@@ -15,8 +16,8 @@
   <main class="wrap main">
     <section class="hero"><span class="eyebrow">PERSONAL BLOG · SINCE 2026</span><h1 data-i18n="heroTitle">既见君子，<br>云胡不喜。</h1><p data-i18n="heroText">在这里记录正在思考的事、正在经历的生活，以及那些值得分享的瞬间。愿文字让日常变得清晰，也让相遇发生。</p><a class="button primary" href="articles.html" data-i18n="browseArticles">去文章里逛逛 <span aria-hidden="true">→</span></a><span class="hero-orbit" aria-hidden="true"></span></section>
     <section class="stats" aria-label="博客统计"><div class="stat"><strong id="article-count">—</strong><span data-i18n="articleCount">篇文章</span></div><div class="stat"><strong id="tag-count">—</strong><span data-i18n="tagCount">个标签</span></div><div class="stat"><strong>2026</strong><span data-i18n="startYear">开始记录</span></div></section>
-    <section class="section"><div class="section-heading"><div><span class="kicker">LATEST STORIES</span><h2 data-i18n="recentTitle">最近的文章</h2></div><a class="text-link" href="articles.html" data-i18n="allArticles">全部文章 →</a></div><div id="recent-articles" class="article-list"><p class="status">正在载入文章…</p></div></section>
-    <section class="section"><div class="section-heading"><div><span class="kicker">EXPLORE BY TOPIC</span><h2 data-i18n="topicTitle">发现主题</h2></div><a class="text-link" href="tags.html" data-i18n="allTags">所有标签 →</a></div><div id="home-tags" class="tag-cloud compact"><p class="status">文章载入后，这里会出现标签。</p></div></section>
+    <section class="section"><div class="section-heading"><div><span class="kicker">LATEST STORIES</span><h2 data-i18n="recentTitle">最近的文章</h2></div><a class="text-link" href="articles.html" data-i18n="allArticles">全部文章 →</a></div><div id="recent-articles" class="article-list"><p class="status" data-i18n="loading">正在载入文章…</p></div></section>
+    <section class="section"><div class="section-heading"><div><span class="kicker">EXPLORE BY TOPIC</span><h2 data-i18n="topicTitle">发现主题</h2></div><a class="text-link" href="tags.html" data-i18n="allTags">所有标签 →</a></div><div id="home-tags" class="tag-cloud compact"><p class="status" data-i18n="loadingTags">文章载入后，这里会出现标签。</p></div></section>
     <footer class="footer"><span data-i18n="publishedBy">文章通过</span> <a href="https://github.com/mechatsvip/mechatsvip.github.io/issues">GitHub Issues</a> <span data-i18n="publishSuffix">发布</span> <span>·</span> © <span class="current-year"></span> Mecha</footer>
   </main>
 </body>
