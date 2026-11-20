@@ -41,10 +41,8 @@ def fetch_articles(token: str) -> list[dict[str, object]]:
             raise RuntimeError("GitHub API returned an unexpected response for issues.")
 
         for issue in issues:
-            # Keep the README focused on the owner's blog posts, not bot-generated digests.
+            # GitHub's issues API also returns pull requests; omit those, but include issues from every author.
             if "pull_request" in issue:
-                continue
-            if issue.get("user", {}).get("login") != OWNER:
                 continue
             articles.append(issue)
 
