@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f5f0">
+  <meta name="description" content="一处记录想法与日常的个人博客。">
+  <title>Mecha 的博客</title>
+  <style>
+    :root{color-scheme:light;--paper:#f7f5f0;--ink:#22231f;--muted:#77786f;--line:#deddd5;--accent:#b84f35;--card:#fffefa;--serif:Georgia,"Noto Serif SC",serif;--sans:system-ui,-apple-system,"Segoe UI",sans-serif}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.7}a{color:inherit}.wrap{width:min(980px,calc(100% - 40px));margin:auto}
+    header{padding:25px 0;border-bottom:1px solid var(--line)}.nav{display:flex;align-items:center;justify-content:space-between}.brand{text-decoration:none;font-family:var(--serif);font-size:20px;font-weight:700;letter-spacing:-.03em}.nav-note{font-size:13px;color:var(--muted)}
+    .hero{padding:90px 0 70px;max-width:760px}.eyebrow{color:var(--accent);font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase}.hero h1{font-family:var(--serif);font-size:clamp(42px,8vw,76px);line-height:1.08;letter-spacing:-.055em;font-weight:500;margin:18px 0}.hero p{font-size:17px;color:var(--muted);max-width:560px;margin:0}
+    .section-heading{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:13px;margin-bottom:8px}.section-heading h2{font-family:var(--serif);font-size:25px;font-weight:500;margin:0}.count{font-size:13px;color:var(--muted)}
+    .posts{padding-bottom:78px}.post{display:grid;grid-template-columns:125px 1fr;gap:25px;padding:27px 0;border-bottom:1px solid var(--line)}.date{font-size:13px;color:var(--muted);padding-top:4px}.post h3{font-family:var(--serif);font-weight:500;font-size:25px;line-height:1.3;margin:0 0 10px}.post h3 a{text-decoration:none}.post h3 a:hover{color:var(--accent)}.article-body{font-size:15px;color:#4b4c45;overflow-wrap:anywhere}.article-body p{margin:0 0 12px}.article-body h1,.article-body h2,.article-body h3{font-family:var(--serif);color:var(--ink);line-height:1.35;margin:20px 0 8px}.article-body blockquote{margin:12px 0;padding:2px 0 2px 16px;border-left:2px solid var(--accent);color:var(--muted)}.article-body ul,.article-body ol{padding-left:22px}.article-body pre{overflow:auto;padding:14px;background:#eeece5;border-radius:6px}.article-body code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;background:#eeece5;padding:2px 5px;border-radius:3px;font-size:.9em}.article-body pre code{padding:0;background:none}.article-body a{color:var(--accent)}.tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}.tag{border:1px solid var(--line);border-radius:20px;padding:2px 9px;color:var(--muted);font-size:11px}
+    .status{padding:35px 0;color:var(--muted);font-size:14px}.status.error{color:#9e3b2b}.empty{padding:48px 0;color:var(--muted);text-align:center}.empty strong{display:block;color:var(--ink);font-family:var(--serif);font-size:21px;font-weight:500;margin-bottom:5px}.footer{border-top:1px solid var(--line);padding:24px 0 36px;color:var(--muted);font-size:12px}.footer a{color:var(--accent)}
+    @media(max-width:600px){.wrap{width:min(100% - 32px,980px)}.hero{padding:65px 0 52px}.post{grid-template-columns:1fr;gap:5px;padding:22px 0}.date{font-size:12px}.post h3{font-size:22px}.nav-note{font-size:12px}}
+  </style>
+</head>
+<body>
+  <header><div class="wrap nav"><a class="brand" href="#top">Mecha<span style="color:var(--accent)">.</span></a><span class="nav-note">由 GitHub Issues 驱动</span></div></header>
+  <main class="wrap" id="top">
+    <section class="hero"><div class="eyebrow">Personal blog · Since 2026</div><h1>你好，欢迎来到<br>我的小小角落。</h1><p>在这里记录正在思考的事、正在经历的生活，以及那些值得留下来的片段。</p></section>
+    <section class="posts" aria-labelledby="posts-heading"><div class="section-heading"><h2 id="posts-heading">最近的文章</h2><span class="count" id="count"></span></div><div id="articles" class="status" role="status">正在加载文章…</div></section>
+  </main>
+  <footer class="footer"><div class="wrap">文章通过 <a href="https://github.com/mechatsvip/mechatsvip.github.io/issues">GitHub Issues</a> 发布 · © <span id="year"></span> Mecha</div></footer>
+  <script>
+    const OWNER = 'mechatsvip';
+    const REPO = 'mechatsvip.github.io';
+    const API = `https://api.github.com/repos/${OWNER}/${REPO}/issues?state=all&per_page=100&sort=created&direction=desc`;
+    const issueUrl = `https://github.com/${OWNER}/${REPO}/issues/`;
+    const root = document.getElementById('articles');
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function escapeHtml(value) {
+      return value.replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+    }
+    function inline(text) {
+      let out = escapeHtml(text);
+      out = out.replace(/`([^`]+)`/g, '<code>$1</code>')
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.+?)\*/g, '<em>$1</em>')
+        .replace(/~~(.+?)~~/g, '<del>$1</del>')
+        .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+      return out;
+    }
+    function markdown(source) {
+      if (!source) return '';
+      const lines = source.replace(/\r/g, '').split('\n');
+      const html = [];
+      let paragraph = [], list = '', code = false, codeLines = [], quote = [];
+      const flushParagraph = () => { if (paragraph.length) { html.push(`<p>${paragraph.map(inline).join('<br>')}</p>`); paragraph = []; } };
+      const flushQuote = () => { if (quote.length) { html.push(`<blockquote><p>${quote.map(inline).join('<br>')}</p></blockquote>`); quote = []; } };
+      const flushList = () => { if (list) { html.push(`</${list}>`); list = ''; } };
+      for (const line of lines) {
+        if (/^\s*```/.test(line)) { flushParagraph(); flushQuote(); flushList(); if (code) { html.push(`<pre><code>${escapeHtml(codeLines.join('\n'))}</code></pre>`); codeLines = []; } code = !code; continue; }
+        if (code) { codeLines.push(line); continue; }
+        const heading = line.match(/^(#{1,3})\s+(.+)$/);
+        const item = line.match(/^\s*([-*+]\s+|\d+\.\s+)(.+)$/);
+        if (heading) { flushParagraph(); flushQuote(); flushList(); const n = heading[1].length; html.push(`<h${n}>${inline(heading[2])}</h${n}>`); }
+        else if (/^>\s?/.test(line)) { flushParagraph(); flushList(); quote.push(line.replace(/^>\s?/, '')); }
+        else if (item) { flushParagraph(); flushQuote(); const nextList = /^\d/.test(item[1]) ? 'ol' : 'ul'; if (list && list !== nextList) flushList(); if (!list) { list = nextList; html.push(`<${list}>`); } html.push(`<li>${inline(item[2])}</li>`); }
+        else if (!line.trim()) { flushParagraph(); flushQuote(); flushList(); }
+        else { flushQuote(); flushList(); paragraph.push(line); }
+      }
+      flushParagraph(); flushQuote(); flushList();
+      if (code) html.push(`<pre><code>${escapeHtml(codeLines.join('\n'))}</code></pre>`);
+      return html.join('\n');
+    }
+    function formatDate(value) {
+      return new Intl.DateTimeFormat('zh-CN', {year:'numeric', month:'long', day:'numeric'}).format(new Date(value));
+    }
+    function render(issues) {
+      const articles = issues.filter(item => !item.pull_request);
+      document.getElementById('count').textContent = `${articles.length} 篇`;
+      if (!articles.length) {
+        root.className = 'empty';
+        root.innerHTML = `<strong>第一篇文章，等你来写。</strong>在仓库的 Issues 中新建一篇文章，它就会出现在这里。`;
+        return;
+      }
+      root.className = '';
+      root.innerHTML = articles.map(issue => `
+        <article class="post" id="issue-${issue.number}">
+          <time class="date" datetime="${issue.created_at}">${formatDate(issue.created_at)}</time>
+          <div><h3><a href="${issueUrl}${issue.number}" target="_blank" rel="noopener noreferrer">${escapeHtml(issue.title)}</a></h3>
+          <div class="article-body">${markdown(issue.body || '')}</div>
+          ${issue.labels?.length ? `<div class="tags">${issue.labels.map(label => `<span class="tag">${escapeHtml(label.name)}</span>`).join('')}</div>` : ''}
+          </div>
+        </article>`).join('');
+    }
+    fetch(API, {headers:{Accept:'application/vnd.github+json'}})
+      .then(response => { if (!response.ok) throw new Error(`GitHub API 返回 ${response.status}`); return response.json(); })
+      .then(render)
+      .catch(error => { root.className = 'status error'; root.textContent = `文章暂时无法加载（${error.message}）。请稍后刷新，或直接前往 GitHub Issues 阅读。`; });
+  </script>
+</body>
+</html>
