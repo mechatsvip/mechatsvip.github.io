@@ -3,27 +3,122 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f7f5f0">
+  <meta name="theme-color" content="#f6f7f2">
   <meta name="description" content="一处记录想法与日常的个人博客。">
   <title>Mecha 的博客</title>
   <style>
-    :root{color-scheme:light;--paper:#f7f5f0;--ink:#22231f;--muted:#77786f;--line:#deddd5;--accent:#b84f35;--card:#fffefa;--serif:Georgia,"Noto Serif SC",serif;--sans:system-ui,-apple-system,"Segoe UI",sans-serif}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.7}a{color:inherit}.wrap{width:min(980px,calc(100% - 40px));margin:auto}
-    header{padding:25px 0;border-bottom:1px solid var(--line)}.nav{display:flex;align-items:center;justify-content:space-between}.brand{text-decoration:none;font-family:var(--serif);font-size:20px;font-weight:700;letter-spacing:-.03em}.nav-note{font-size:13px;color:var(--muted)}
-    .hero{padding:90px 0 70px;max-width:760px}.eyebrow{color:var(--accent);font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase}.hero h1{font-family:var(--serif);font-size:clamp(42px,8vw,76px);line-height:1.08;letter-spacing:-.055em;font-weight:500;margin:18px 0}.hero p{font-size:17px;color:var(--muted);max-width:560px;margin:0}
-    .section-heading{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:13px;margin-bottom:8px}.section-heading h2{font-family:var(--serif);font-size:25px;font-weight:500;margin:0}.count{font-size:13px;color:var(--muted)}
-    .posts{padding-bottom:78px}.post{display:grid;grid-template-columns:125px 1fr;gap:25px;padding:27px 0;border-bottom:1px solid var(--line)}.date{font-size:13px;color:var(--muted);padding-top:4px}.post h3{font-family:var(--serif);font-weight:500;font-size:25px;line-height:1.3;margin:0 0 10px}.post h3 a{text-decoration:none}.post h3 a:hover{color:var(--accent)}.article-body{font-size:15px;color:#4b4c45;overflow-wrap:anywhere}.article-body p{margin:0 0 12px}.article-body h1,.article-body h2,.article-body h3{font-family:var(--serif);color:var(--ink);line-height:1.35;margin:20px 0 8px}.article-body blockquote{margin:12px 0;padding:2px 0 2px 16px;border-left:2px solid var(--accent);color:var(--muted)}.article-body ul,.article-body ol{padding-left:22px}.article-body pre{overflow:auto;padding:14px;background:#eeece5;border-radius:6px}.article-body code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;background:#eeece5;padding:2px 5px;border-radius:3px;font-size:.9em}.article-body pre code{padding:0;background:none}.article-body a{color:var(--accent)}.tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}.tag{border:1px solid var(--line);border-radius:20px;padding:2px 9px;color:var(--muted);font-size:11px}
-    .status{padding:35px 0;color:var(--muted);font-size:14px}.status.error{color:#9e3b2b}.empty{padding:48px 0;color:var(--muted);text-align:center}.empty strong{display:block;color:var(--ink);font-family:var(--serif);font-size:21px;font-weight:500;margin-bottom:5px}.footer{border-top:1px solid var(--line);padding:24px 0 36px;color:var(--muted);font-size:12px}.footer a{color:var(--accent)}
-    @media(max-width:600px){.wrap{width:min(100% - 32px,980px)}.hero{padding:65px 0 52px}.post{grid-template-columns:1fr;gap:5px;padding:22px 0}.date{font-size:12px}.post h3{font-size:22px}.nav-note{font-size:12px}}
+    :root {
+      color-scheme: light;
+      --paper: #f6f7f2;
+      --surface: #fff;
+      --ink: #202a25;
+      --muted: #758078;
+      --line: #e4e9e2;
+      --accent: #33745b;
+      --accent-dark: #24553f;
+      --accent-soft: #e8f1e9;
+      --serif: Georgia, "Noto Serif SC", "Songti SC", serif;
+      --sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", sans-serif;
+      --shadow: 0 18px 50px rgba(37, 61, 46, .07);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: var(--sans);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    a:focus-visible { outline: 3px solid #8bb79a; outline-offset: 4px; border-radius: 4px; }
+    .wrap { width: min(100% - 48px, 1040px); margin-inline: auto; }
+    .site-header { padding: 21px 0; border-bottom: 1px solid rgba(58, 84, 66, .1); }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--serif); font-size: 21px; font-weight: 700; letter-spacing: -.04em; }
+    .brand-mark { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 11px; color: #fff; background: var(--accent); font: 700 16px var(--sans); }
+    .nav-note { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); font-size: 12px; letter-spacing: .04em; }
+    .nav-note::before { width: 7px; height: 7px; border-radius: 50%; background: #75a982; content: ""; }
+    .hero { position: relative; overflow: hidden; margin: 40px 0 72px; padding: clamp(42px, 7vw, 82px); border: 1px solid #e6ebe3; border-radius: 28px; background: radial-gradient(ellipse at 93% 5%, rgba(181, 207, 174, .38), transparent 34%), linear-gradient(135deg, #fff 0%, #fbfcf8 58%, #f0f5ed 100%); box-shadow: var(--shadow); }
+    .hero::after { position: absolute; right: 7%; bottom: -96px; width: 250px; height: 250px; border: 1px solid rgba(51, 116, 91, .1); border-radius: 50%; box-shadow: 0 0 0 22px rgba(51, 116, 91, .025), 0 0 0 48px rgba(51, 116, 91, .02); content: ""; pointer-events: none; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--accent); font-size: 11px; font-weight: 750; letter-spacing: .16em; text-transform: uppercase; }
+    .eyebrow::before { width: 21px; height: 1px; background: currentColor; content: ""; }
+    .hero h1 { position: relative; z-index: 1; max-width: 700px; margin: 20px 0 17px; font-family: var(--serif); font-size: clamp(38px, 6vw, 66px); font-weight: 600; letter-spacing: -.055em; line-height: 1.24; }
+    .hero p { position: relative; z-index: 1; max-width: 540px; margin: 0; color: #69756d; font-size: clamp(15px, 2vw, 17px); }
+    .hero-meta { position: relative; z-index: 1; display: flex; align-items: center; gap: 10px; margin-top: 30px; color: var(--muted); font-size: 12px; }
+    .hero-meta span { padding: 6px 12px; border: 1px solid #e4ebe2; border-radius: 999px; background: rgba(255,255,255,.68); }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 17px; }
+    .section-title { margin: 0; font-family: var(--serif); font-size: 27px; letter-spacing: -.04em; }
+    .section-kicker { display: block; margin-bottom: 2px; color: var(--muted); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+    .count { padding: 5px 11px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); background: rgba(255,255,255,.65); font-size: 12px; white-space: nowrap; }
+    .posts { padding-bottom: 76px; }
+    #articles { overflow: hidden; border: 1px solid var(--line); border-radius: 20px; background: var(--surface); box-shadow: 0 10px 35px rgba(37, 61, 46, .035); }
+    .post { display: grid; grid-template-columns: 132px minmax(0, 1fr); gap: 26px; padding: 30px 34px; transition: background .2s ease; }
+    .post + .post { border-top: 1px solid var(--line); }
+    .post:hover { background: #fbfcf9; }
+    .date { padding-top: 5px; color: var(--muted); font-size: 12px; white-space: nowrap; }
+    .post h3 { margin: 0 0 10px; font-family: var(--serif); font-size: 22px; font-weight: 650; letter-spacing: -.025em; line-height: 1.45; }
+    .post h3 a { text-decoration: none; text-decoration-color: transparent; text-underline-offset: 4px; transition: color .18s ease, text-decoration-color .18s ease; }
+    .post h3 a:hover { color: var(--accent); text-decoration: underline; text-decoration-color: currentColor; }
+    .article-body { color: #59645d; font-size: 14px; overflow-wrap: anywhere; }
+    .article-body > :first-child { margin-top: 0; }
+    .article-body > :last-child { margin-bottom: 0; }
+    .article-body p { margin: 11px 0; }
+    .article-body h1, .article-body h2, .article-body h3 { margin: 22px 0 9px; color: var(--ink); font-family: var(--serif); line-height: 1.4; }
+    .article-body h1 { font-size: 22px; }
+    .article-body h2 { font-size: 19px; }
+    .article-body h3 { font-size: 17px; }
+    .article-body a { color: var(--accent-dark); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    .article-body blockquote { margin: 16px 0; padding: 2px 0 2px 16px; border-left: 3px solid #a9c7aa; color: #6d786f; }
+    .article-body ul, .article-body ol { padding-left: 24px; }
+    .article-body li { padding-left: 3px; margin: 4px 0; }
+    .article-body code { padding: 2px 6px; border: 1px solid #e9eee8; border-radius: 5px; color: #315d46; background: #f4f7f2; font: .9em ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .article-body pre { overflow-x: auto; margin: 16px 0; padding: 17px 19px; border: 1px solid #e6ebe4; border-radius: 12px; background: #f7f9f5; line-height: 1.65; }
+    .article-body pre code { padding: 0; border: 0; background: transparent; }
+    .tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 16px; }
+    .tag { padding: 3px 10px; border: 1px solid #e3ebe2; border-radius: 999px; color: #52705c; background: #f5f8f3; font-size: 11px; }
+    .status, .empty { padding: 42px 32px; color: var(--muted); text-align: center; font-size: 14px; }
+    .status.error { color: #9e4b3b; }
+    .empty strong { display: block; margin-bottom: 5px; color: var(--ink); font-family: var(--serif); font-size: 20px; }
+    .site-footer { padding: 25px 0 34px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+    .site-footer .wrap { display: flex; justify-content: space-between; gap: 16px; }
+    .site-footer a { color: var(--accent-dark); text-decoration: none; }
+    .site-footer a:hover { text-decoration: underline; }
+    @media (max-width: 640px) {
+      .wrap { width: min(100% - 32px, 1040px); }
+      .site-header { padding: 16px 0; }
+      .hero { margin: 24px 0 52px; padding: 37px 25px 34px; border-radius: 22px; }
+      .hero::after { right: -130px; bottom: -125px; }
+      .hero h1 { margin-top: 16px; font-size: clamp(37px, 10vw, 53px); }
+      .hero-meta { flex-wrap: wrap; margin-top: 22px; }
+      .section-title { font-size: 24px; }
+      .post { grid-template-columns: 1fr; gap: 5px; padding: 23px 21px; }
+      .date { padding: 0; font-size: 11px; }
+      .post h3 { margin-bottom: 8px; font-size: 20px; }
+      #articles { border-radius: 16px; }
+      .site-footer .wrap { flex-direction: column; gap: 4px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
   </style>
 </head>
 <body>
-  <header><div class="wrap nav"><a class="brand" href="#top">Mecha<span style="color:var(--accent)">.</span></a><span class="nav-note">由 GitHub Issues 驱动</span></div></header>
+  <header class="site-header"><div class="wrap nav"><a class="brand" href="#top" aria-label="Mecha 博客首页"><span class="brand-mark">M</span><span>Mecha<span style="color:var(--accent)">.</span></span></a><span class="nav-note">由 GitHub Issues 驱动</span></div></header>
   <main class="wrap" id="top">
-    <section class="hero"><div class="eyebrow">Personal blog · Since 2026</div><h1>你好，欢迎来到<br>我的小小角落。</h1><p>在这里记录正在思考的事、正在经历的生活，以及那些值得留下来的片段。</p></section>
-    <section class="posts" aria-labelledby="posts-heading"><div class="section-heading"><h2 id="posts-heading">最近的文章</h2><span class="count" id="count"></span></div><div id="articles" class="status" role="status">正在加载文章…</div></section>
+    <section class="hero" aria-labelledby="welcome-title">
+      <div class="eyebrow">Personal blog · Since 2026</div>
+      <h1 id="welcome-title">你好，欢迎来到<br>我的小小角落。</h1>
+      <p>在这里记录正在思考的事、正在经历的生活，以及那些值得分享的瞬间。愿文字让日常变得清晰，也让相遇发生。</p>
+      <div class="hero-meta"><span>慢慢写，认真生活</span><span>随笔 · 记录 · 分享</span></div>
+    </section>
+    <section class="posts" aria-labelledby="posts-heading">
+      <div class="section-heading"><div><span class="section-kicker">From my notebook</span><h2 class="section-title" id="posts-heading">最近的文章</h2></div><span class="count" id="count"></span></div>
+      <div id="articles" class="status" aria-live="polite">正在寻找最新的文字…</div>
+    </section>
   </main>
-  <footer class="footer"><div class="wrap">文章通过 <a href="https://github.com/mechatsvip/mechatsvip.github.io/issues">GitHub Issues</a> 发布 · © <span id="year"></span> Mecha</div></footer>
+  <footer class="site-footer"><div class="wrap"><span>文章通过 <a href="https://github.com/mechatsvip/mechatsvip.github.io/issues">GitHub Issues</a> 发布</span><span>© <span id="year"></span> Mecha · 用心记录</span></div></footer>
   <script>
     const OWNER = 'mechatsvip';
     const REPO = 'mechatsvip.github.io';
@@ -33,7 +128,7 @@
     document.getElementById('year').textContent = new Date().getFullYear();
 
     function escapeHtml(value) {
-      return value.replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+      return String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
     }
     function inline(text) {
       let out = escapeHtml(text);
@@ -53,15 +148,32 @@
       const flushQuote = () => { if (quote.length) { html.push(`<blockquote><p>${quote.map(inline).join('<br>')}</p></blockquote>`); quote = []; } };
       const flushList = () => { if (list) { html.push(`</${list}>`); list = ''; } };
       for (const line of lines) {
-        if (/^\s*```/.test(line)) { flushParagraph(); flushQuote(); flushList(); if (code) { html.push(`<pre><code>${escapeHtml(codeLines.join('\n'))}</code></pre>`); codeLines = []; } code = !code; continue; }
+        if (/^\s*```/.test(line)) {
+          flushParagraph(); flushQuote(); flushList();
+          if (code) { html.push(`<pre><code>${escapeHtml(codeLines.join('\n'))}</code></pre>`); codeLines = []; }
+          code = !code;
+          continue;
+        }
         if (code) { codeLines.push(line); continue; }
         const heading = line.match(/^(#{1,3})\s+(.+)$/);
         const item = line.match(/^\s*([-*+]\s+|\d+\.\s+)(.+)$/);
-        if (heading) { flushParagraph(); flushQuote(); flushList(); const n = heading[1].length; html.push(`<h${n}>${inline(heading[2])}</h${n}>`); }
-        else if (/^>\s?/.test(line)) { flushParagraph(); flushList(); quote.push(line.replace(/^>\s?/, '')); }
-        else if (item) { flushParagraph(); flushQuote(); const nextList = /^\d/.test(item[1]) ? 'ol' : 'ul'; if (list && list !== nextList) flushList(); if (!list) { list = nextList; html.push(`<${list}>`); } html.push(`<li>${inline(item[2])}</li>`); }
-        else if (!line.trim()) { flushParagraph(); flushQuote(); flushList(); }
-        else { flushQuote(); flushList(); paragraph.push(line); }
+        if (heading) {
+          flushParagraph(); flushQuote(); flushList();
+          const n = heading[1].length;
+          html.push(`<h${n}>${inline(heading[2])}</h${n}>`);
+        } else if (/^>\s?/.test(line)) {
+          flushParagraph(); flushList(); quote.push(line.replace(/^>\s?/, ''));
+        } else if (item) {
+          flushParagraph(); flushQuote();
+          const nextList = /^\d/.test(item[1]) ? 'ol' : 'ul';
+          if (list && list !== nextList) flushList();
+          if (!list) { list = nextList; html.push(`<${list}>`); }
+          html.push(`<li>${inline(item[2])}</li>`);
+        } else if (!line.trim()) {
+          flushParagraph(); flushQuote(); flushList();
+        } else {
+          flushQuote(); flushList(); paragraph.push(line);
+        }
       }
       flushParagraph(); flushQuote(); flushList();
       if (code) html.push(`<pre><code>${escapeHtml(codeLines.join('\n'))}</code></pre>`);
@@ -81,7 +193,7 @@
       root.className = '';
       root.innerHTML = articles.map(issue => `
         <article class="post" id="issue-${issue.number}">
-          <time class="date" datetime="${issue.created_at}">${formatDate(issue.created_at)}</time>
+          <time class="date" datetime="${escapeHtml(issue.created_at)}">${formatDate(issue.created_at)}</time>
           <div><h3><a href="${issueUrl}${issue.number}" target="_blank" rel="noopener noreferrer">${escapeHtml(issue.title)}</a></h3>
           <div class="article-body">${markdown(issue.body || '')}</div>
           ${issue.labels?.length ? `<div class="tags">${issue.labels.map(label => `<span class="tag">${escapeHtml(label.name)}</span>`).join('')}</div>` : ''}
