@@ -7,8 +7,8 @@ on:
   workflow_dispatch:
 
 permissions:
-  issues: write
   contents: read
+  issues: write
 
 jobs:
   publish:
@@ -23,7 +23,7 @@ jobs:
           python-version: "3.12"
 
       - name: Install dependencies
-        run: pip install -r requirements-digest.txt
+        run: python -m pip install -r requirements-digest.txt
 
       - name: Fetch AI articles and publish Issue
         env:
