@@ -4,6 +4,9 @@
 
 ## 文章目录
 
+
+<!-- articles:start -->
+- [Using dominance over subjugation](https://github.com/mechatsvip/mechatsvip.github.io/issues/8)
 - [Accepting critical voices](https://github.com/mechatsvip/mechatsvip.github.io/issues/7)
 - [If your ideas differ from those of the organization, don't consider it abnormal.](https://github.com/mechatsvip/mechatsvip.github.io/issues/6)
 - [There is no need to be afraid of loneliness.](https://github.com/mechatsvip/mechatsvip.github.io/issues/5)
@@ -11,3 +14,4 @@
 - [Become a Superhuman](https://github.com/mechatsvip/mechatsvip.github.io/issues/3)
 - [Things have no distinction between surface and interior](https://github.com/mechatsvip/mechatsvip.github.io/issues/2)
 - [But I'm here](https://github.com/mechatsvip/mechatsvip.github.io/issues/1)
+<!-- articles:end -->
