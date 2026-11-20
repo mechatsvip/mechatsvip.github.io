@@ -1,4 +1,4 @@
-# Mecha 的博客
+# MeChat 的博客
 
 博客地址：[https://mechatsvip.github.io/](https://mechatsvip.github.io/)
 

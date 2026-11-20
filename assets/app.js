@@ -16,12 +16,12 @@
 
   const words = {
     zh: {
-      pageTitle: 'Mecha 的博客', articlesPageTitle: '文章列表 · Mecha 的博客', tagsPageTitle: '标签 · Mecha 的博客', timelinePageTitle: '时间线 · Mecha 的博客', aboutPageTitle: '关于我 · Mecha 的博客',
+      pageTitle: 'MeChat 的博客', articlesPageTitle: '文章列表 · MeChat 的博客', tagsPageTitle: '标签 · MeChat 的博客', timelinePageTitle: '时间线 · MeChat 的博客', aboutPageTitle: '关于我 · MeChat 的博客',
       navHome: '首页', navArticles: '文章', navTags: '标签', navTimeline: '时间线', navAbout: '关于我', navLabel: '主导航',
       heroTitle: '既见君子，<br>云胡不喜。', heroText: '在这里记录正在思考的事、正在经历的生活，以及那些值得分享的瞬间。愿文字让日常变得清晰，也让相遇发生。', browseArticles: '去文章里逛逛 <span aria-hidden="true">→</span>',
       articleCount: '篇文章', tagCount: '个标签', startYear: '开始记录', recentTitle: '最近的文章', allArticles: '全部文章 →', topicTitle: '发现主题', allTags: '所有标签 →',
       publishedBy: '文章通过', publishSuffix: '发布', articlesTitle: '文章列表', articlesIntro: '慢慢读，每一篇都是一段当时的想法。', clear: '清除', searchPlaceholder: '搜索标题或正文…', searchLabel: '搜索文章',
-      tagsTitle: '标签', tagsIntro: '从一个关键词出发，找到相关的文字。', timelineTitle: '时间线', timelineIntro: '按年份和日期，回看一路写下的片段。', aboutTitle: '关于我', aboutIntro: '认识这个博客背后的写作者。', helloMecha: '你好，我是 Mecha。',
+      tagsTitle: '标签', tagsIntro: '从一个关键词出发，找到相关的文字。', timelineTitle: '时间线', timelineIntro: '按年份和日期，回看一路写下的片段。', aboutTitle: '关于我', aboutIntro: '认识这个博客背后的写作者。', helloMeChat: '你好，我是 MeChat。',
       aboutText1: '这是一个记录思考与日常的小小角落。我相信慢慢写、认真生活，也相信文字能让普通的瞬间留下痕迹。', aboutText2: '这里的文章发布在 GitHub Issues。欢迎来读，也欢迎交流。', githubLink: '访问我的 GitHub ↗', issuesLink: '浏览文章 Issues ↗', backHome: '返回首页',
       loading: '正在载入文章…', loadingTags: '正在整理标签…', loadingTimeline: '正在整理时间线…', noPosts: '还没有文章，第一篇故事正在等待你。', noTags: '暂时还没有文章标签。', noMatches: '没有找到匹配的文章，试试其他关键词。',
       searchResult: '共 {total} 篇文章，第 {page} / {pages} 页', tagResult: '标签：{tag} · 共 {total} 篇文章，第 {page} / {pages} 页',
@@ -32,12 +32,12 @@
       aboutButton: '文章 Issues ↗'
     },
     en: {
-      pageTitle: 'Mecha’s Blog', articlesPageTitle: 'Articles · Mecha’s Blog', tagsPageTitle: 'Tags · Mecha’s Blog', timelinePageTitle: 'Timeline · Mecha’s Blog', aboutPageTitle: 'About · Mecha’s Blog',
+      pageTitle: 'MeChat’s Blog', articlesPageTitle: 'Articles · MeChat’s Blog', tagsPageTitle: 'Tags · MeChat’s Blog', timelinePageTitle: 'Timeline · MeChat’s Blog', aboutPageTitle: 'About · MeChat’s Blog',
       navHome: 'Home', navArticles: 'Articles', navTags: 'Tags', navTimeline: 'Timeline', navAbout: 'About', navLabel: 'Main navigation',
       heroTitle: 'Having met you,<br>how could I not be glad?', heroText: 'A place to record thoughts, everyday life, and moments worth sharing. May these words bring clarity and make room for meaningful encounters.', browseArticles: 'Browse articles <span aria-hidden="true">→</span>',
       articleCount: 'articles', tagCount: 'tags', startYear: 'Since', recentTitle: 'Recent stories', allArticles: 'All articles →', topicTitle: 'Explore topics', allTags: 'All tags →',
       publishedBy: 'Posts published via', publishSuffix: '', articlesTitle: 'Articles', articlesIntro: 'Read slowly; every post holds a moment of thought.', clear: 'Clear', searchPlaceholder: 'Search titles or article text…', searchLabel: 'Search articles',
-      tagsTitle: 'Tags', tagsIntro: 'Start with a keyword and find related stories.', timelineTitle: 'Timeline', timelineIntro: 'Revisit the stories by year and date.', aboutTitle: 'About', aboutIntro: 'Meet the person behind this blog.', helloMecha: 'Hello, I’m Mecha.',
+      tagsTitle: 'Tags', tagsIntro: 'Start with a keyword and find related stories.', timelineTitle: 'Timeline', timelineIntro: 'Revisit the stories by year and date.', aboutTitle: 'About', aboutIntro: 'Meet the person behind this blog.', helloMeChat: 'Hello, I’m MeChat.',
       aboutText1: 'This is a small corner for thoughts and everyday life. I believe in writing slowly, living attentively, and keeping a record of ordinary moments.', aboutText2: 'Posts are published through GitHub Issues. Welcome to read and share.', githubLink: 'Visit my GitHub ↗', issuesLink: 'Browse article issues ↗', backHome: 'Back to home',
       loading: 'Loading articles…', loadingTags: 'Loading tags…', loadingTimeline: 'Building the timeline…', noPosts: 'No articles yet. The first story is waiting to be written.', noTags: 'There are no article tags yet.', noMatches: 'No matching articles. Try another search.',
       searchResult: '{total} articles · Page {page} of {pages}', tagResult: 'Tag: {tag} · {total} articles · Page {page} of {pages}',
