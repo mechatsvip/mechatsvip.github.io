@@ -1,310 +1,266 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f6f7f2">
-  <meta name="description" content="一处记录想法与日常的个人博客。">
+  <meta name="description" content="Mecha 的个人博客，记录想法、生活与值得分享的瞬间。">
   <title>Mecha 的博客</title>
   <script>
     try {
       const savedTheme = localStorage.getItem('mecha-theme');
-      const initialTheme = savedTheme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      document.documentElement.dataset.theme = initialTheme;
+      document.documentElement.dataset.theme = savedTheme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     } catch (_) {}
   </script>
   <style>
     :root {
       color-scheme: light;
-      --paper: #f6f7f2;
-      --surface: #fff;
-      --ink: #202a25;
-      --muted: #758078;
-      --line: #e4e9e2;
-      --accent: #33745b;
-      --accent-dark: #24553f;
-      --accent-soft: #e8f1e9;
-      --hero-text: #69756d;
-      --hover: #fbfcf9;
-      --code-bg: #f4f7f2;
-      --pre-bg: #f7f9f5;
-      --tag-bg: #f5f8f3;
-      --serif: Georgia, "Noto Serif SC", "Songti SC", serif;
-      --sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", sans-serif;
-      --shadow: 0 18px 50px rgba(37, 61, 46, .07);
+      --paper:#f6f7f2; --surface:#fff; --ink:#202a25; --muted:#758078; --line:#e4e9e2;
+      --accent:#33745b; --accent-dark:#24553f; --soft:#e8f1e9; --hover:#f8faf6;
+      --shadow:0 18px 50px rgba(37,61,46,.07); --serif:Georgia,"Noto Serif SC","Songti SC",serif;
+      --sans:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",sans-serif;
     }
     :root[data-theme="dark"] {
-      color-scheme: dark;
-      --paper: #151a17;
-      --surface: #1d2420;
-      --ink: #e6ece7;
-      --muted: #9aa79e;
-      --line: #303b34;
-      --accent: #86c3a0;
-      --accent-dark: #a4d5b7;
-      --accent-soft: #263a2e;
-      --hero-text: #b4c0b7;
-      --hover: #222b26;
-      --code-bg: #222b26;
-      --pre-bg: #1a211d;
-      --tag-bg: #222d26;
-      --shadow: 0 18px 50px rgba(0, 0, 0, .22);
+      color-scheme:dark; --paper:#151a17; --surface:#1d2420; --ink:#e6ece7; --muted:#9aa79e;
+      --line:#303b34; --accent:#86c3a0; --accent-dark:#a4d5b7; --soft:#263a2e; --hover:#222b26;
+      --shadow:0 18px 50px rgba(0,0,0,.22);
     }
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--sans); line-height: 1.75; -webkit-font-smoothing: antialiased; transition: background .2s ease, color .2s ease; }
-    a { color: inherit; }
-    button { font: inherit; }
-    a:focus-visible, button:focus-visible { outline: 3px solid #8bb79a; outline-offset: 4px; border-radius: 4px; }
-    .wrap { width: min(100% - 48px, 1040px); margin-inline: auto; }
-    .site-header { padding: 21px 0; border-bottom: 1px solid var(--line); }
-    .nav { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-    .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--serif); font-size: 21px; font-weight: 700; letter-spacing: -.04em; }
-    .brand-mark { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 11px; color: #fff; background: #33745b; font: 700 16px var(--sans); }
-    .nav-tools { display: flex; align-items: center; gap: 10px; }
-    .nav-note { display: inline-flex; align-items: center; gap: 8px; margin-right: 8px; color: var(--muted); font-size: 12px; letter-spacing: .04em; }
-    .nav-note::before { width: 7px; height: 7px; border-radius: 50%; background: #75a982; content: ""; }
-    .tool-button { min-width: 42px; min-height: 38px; padding: 7px 11px; border: 1px solid var(--line); border-radius: 11px; color: var(--ink); background: var(--surface); cursor: pointer; }
-    .tool-button:hover { border-color: var(--accent); color: var(--accent-dark); }
-    .hero { position: relative; overflow: hidden; margin: 40px 0 72px; padding: clamp(42px, 7vw, 82px); border: 1px solid var(--line); border-radius: 28px; background: radial-gradient(ellipse at 93% 5%, rgba(181, 207, 174, .22), transparent 34%), linear-gradient(135deg, var(--surface) 0%, var(--paper) 100%); box-shadow: var(--shadow); }
-    .hero::after { position: absolute; right: 7%; bottom: -96px; width: 250px; height: 250px; border: 1px solid rgba(115, 171, 133, .18); border-radius: 50%; box-shadow: 0 0 0 22px rgba(115, 171, 133, .04), 0 0 0 48px rgba(115, 171, 133, .03); content: ""; pointer-events: none; }
-    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--accent-dark); font-size: 11px; font-weight: 750; letter-spacing: .16em; text-transform: uppercase; }
-    .eyebrow::before { width: 21px; height: 1px; background: currentColor; content: ""; }
-    .hero h1 { position: relative; z-index: 1; max-width: 700px; margin: 20px 0 17px; font-family: var(--serif); font-size: clamp(38px, 6vw, 66px); font-weight: 600; letter-spacing: -.055em; line-height: 1.35; }
-    .hero p { position: relative; z-index: 1; max-width: 540px; margin: 0; color: var(--hero-text); font-size: clamp(15px, 2vw, 17px); }
-    .hero-meta { position: relative; z-index: 1; display: flex; align-items: center; gap: 10px; margin-top: 30px; color: var(--muted); font-size: 12px; }
-    .hero-meta span { padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); }
-    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 17px; }
-    .section-title { margin: 0; font-family: var(--serif); font-size: 27px; letter-spacing: -.04em; }
-    .section-kicker { display: block; margin-bottom: 2px; color: var(--muted); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
-    .count { padding: 5px 11px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); background: var(--surface); font-size: 12px; white-space: nowrap; }
-    .posts { padding-bottom: 76px; }
-    #articles { overflow: hidden; border: 1px solid var(--line); border-radius: 20px; background: var(--surface); box-shadow: 0 10px 35px rgba(0, 0, 0, .04); }
-    .post { display: grid; grid-template-columns: 132px minmax(0, 1fr); gap: 26px; padding: 30px 34px; transition: background .2s ease; }
-    .post + .post { border-top: 1px solid var(--line); }
-    .post:hover { background: var(--hover); }
-    .date { padding-top: 5px; color: var(--muted); font-size: 12px; white-space: nowrap; }
-    .post h3 { margin: 0 0 10px; font-family: var(--serif); font-size: 22px; font-weight: 650; letter-spacing: -.025em; line-height: 1.45; }
-    .post h3 a { text-decoration: none; text-decoration-color: transparent; text-underline-offset: 4px; transition: color .18s ease, text-decoration-color .18s ease; }
-    .post h3 a:hover { color: var(--accent); text-decoration: underline; text-decoration-color: currentColor; }
-    .article-body { color: var(--hero-text); font-size: 14px; overflow-wrap: anywhere; }
-    .article-body > :first-child { margin-top: 0; }
-    .article-body > :last-child { margin-bottom: 0; }
-    .article-body p { margin: 11px 0; }
-    .article-body h1, .article-body h2, .article-body h3 { margin: 22px 0 9px; color: var(--ink); font-family: var(--serif); line-height: 1.4; }
-    .article-body h1 { font-size: 22px; }
-    .article-body h2 { font-size: 19px; }
-    .article-body h3 { font-size: 17px; }
-    .article-body a { color: var(--accent-dark); text-decoration-thickness: 1px; text-underline-offset: 3px; }
-    .article-body blockquote { margin: 16px 0; padding: 2px 0 2px 16px; border-left: 3px solid var(--accent); color: var(--muted); }
-    .article-body ul, .article-body ol { padding-left: 24px; }
-    .article-body li { padding-left: 3px; margin: 4px 0; }
-    .article-body code { padding: 2px 6px; border: 1px solid var(--line); border-radius: 5px; color: var(--accent-dark); background: var(--code-bg); font: .9em ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
-    .article-body pre { overflow-x: auto; margin: 16px 0; padding: 17px 19px; border: 1px solid var(--line); border-radius: 12px; background: var(--pre-bg); line-height: 1.65; }
-    .article-body pre code { padding: 0; border: 0; background: transparent; }
-    .tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 16px; }
-    .tag { padding: 3px 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--accent-dark); background: var(--tag-bg); font-size: 11px; }
-    .status, .empty { padding: 42px 32px; color: var(--muted); text-align: center; font-size: 14px; }
-    .status.error { color: #c56e5d; }
-    .empty strong { display: block; margin-bottom: 5px; color: var(--ink); font-family: var(--serif); font-size: 20px; }
-    .site-footer { padding: 25px 0 34px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
-    .site-footer .wrap { display: flex; justify-content: space-between; gap: 16px; }
-    .site-footer a { color: var(--accent-dark); text-decoration: none; }
-    .site-footer a:hover { text-decoration: underline; }
-    @media (max-width: 640px) {
-      .wrap { width: min(100% - 32px, 1040px); }
-      .site-header { padding: 16px 0; }
-      .nav { gap: 10px; }
-      .nav-tools { gap: 7px; }
-      .nav-note { display: none; }
-      .hero { margin: 24px 0 52px; padding: 37px 25px 34px; border-radius: 22px; }
-      .hero::after { right: -130px; bottom: -125px; }
-      .hero h1 { margin-top: 16px; font-size: clamp(37px, 10vw, 53px); }
-      .hero-meta { flex-wrap: wrap; margin-top: 22px; }
-      .section-title { font-size: 24px; }
-      .post { grid-template-columns: 1fr; gap: 5px; padding: 23px 21px; }
-      .date { padding: 0; font-size: 11px; }
-      .post h3 { margin-bottom: 8px; font-size: 20px; }
-      #articles { border-radius: 16px; }
-      .site-footer .wrap { flex-direction: column; gap: 4px; }
-    }
-    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:28px}
+    body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.75 var(--sans);-webkit-font-smoothing:antialiased;transition:background .2s,color .2s}
+    a{color:inherit} button,input{font:inherit} button{color:inherit}
+    a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #8bb79a;outline-offset:3px}
+    .layout{width:min(1160px,100% - 48px);margin:auto;display:grid;grid-template-columns:220px minmax(0,1fr);gap:64px}
+    .side{position:sticky;top:0;height:100vh;padding:38px 0 24px;display:flex;flex-direction:column;border-right:1px solid var(--line)}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;font:700 22px var(--serif);letter-spacing:-.04em}
+    .brand-mark{display:grid;place-items:center;width:40px;height:40px;border-radius:14px;color:#fff;background:#33745b;font:700 17px var(--sans);box-shadow:0 8px 18px #33745b2b}
+    .brand small{display:block;color:var(--muted);font:11px var(--sans);letter-spacing:.08em}
+    .nav{display:grid;gap:7px;margin-top:55px}
+    .nav a{display:flex;align-items:center;gap:13px;padding:11px 14px;border-radius:12px;color:var(--muted);font-size:14px;text-decoration:none;transition:.18s}
+    .nav a:hover,.nav a.active{color:var(--accent-dark);background:var(--soft)}
+    .nav-icon{width:20px;text-align:center;font-size:16px}
+    .side-bottom{margin-top:auto;color:var(--muted);font-size:12px}
+    .side-bottom p{margin:0 0 13px}
+    .social-link{color:var(--accent-dark);text-decoration:none}
+    .tools{display:flex;gap:8px}
+    .tool{width:38px;height:38px;border:1px solid var(--line);border-radius:11px;background:var(--surface);cursor:pointer}
+    .tool:hover{border-color:var(--accent);color:var(--accent-dark)}
+    main{min-width:0;padding:35px 0 70px}
+    .mobile-top{display:none}
+    .hero{position:relative;overflow:hidden;padding:clamp(34px,6vw,66px);border:1px solid var(--line);border-radius:28px;background:radial-gradient(ellipse at 92% 10%,#dcecdf99,transparent 36%),linear-gradient(135deg,var(--surface),var(--hover));box-shadow:var(--shadow)}
+    :root[data-theme="dark"] .hero{background:radial-gradient(ellipse at 92% 10%,#36554155,transparent 36%),linear-gradient(135deg,var(--surface),var(--hover))}
+    .eyebrow{display:flex;align-items:center;gap:9px;color:var(--accent-dark);font-size:11px;font-weight:750;letter-spacing:.16em;text-transform:uppercase}
+    .eyebrow::before{width:22px;height:1px;background:currentColor;content:""}
+    .hero h1{max-width:680px;margin:18px 0 13px;font:600 clamp(38px,6vw,64px)/1.2 var(--serif);letter-spacing:-.055em}
+    .hero p{max-width:580px;margin:0;color:var(--muted);font-size:16px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:11px;margin-top:27px}
+    .button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:43px;padding:9px 16px;border:1px solid var(--line);border-radius:12px;background:var(--surface);text-decoration:none;font-size:13px;font-weight:650;transition:transform .18s,border-color .18s}
+    .button:hover{transform:translateY(-2px);border-color:var(--accent)}
+    .button.primary{border-color:var(--accent);color:#fff;background:var(--accent)}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin:18px 0 58px}
+    .stat{padding:17px 20px;border:1px solid var(--line);border-radius:17px;background:var(--surface)}
+    .stat strong{display:block;font:600 24px var(--serif)}.stat span{color:var(--muted);font-size:12px}
+    .section{padding-top:8px;margin-bottom:62px;scroll-margin-top:24px}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:18px}
+    .section-kicker{display:block;margin-bottom:3px;color:var(--muted);font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase}
+    .section-title{margin:0;font:600 29px/1.35 var(--serif);letter-spacing:-.04em}
+    .section-note{color:var(--muted);font-size:12px}
+    .article-tools{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+    .search{flex:1;min-width:0;height:43px;padding:0 14px;border:1px solid var(--line);border-radius:12px;color:var(--ink);background:var(--surface)}
+    .search::placeholder{color:var(--muted)}
+    .filter-reset{height:42px;padding:0 13px;border:1px solid var(--line);border-radius:11px;background:var(--surface);cursor:pointer;font-size:12px}
+    .filter-reset:hover{border-color:var(--accent);color:var(--accent-dark)}
+    .filter-caption{min-height:24px;color:var(--muted);font-size:12px}
+    .article-list{overflow:hidden;border:1px solid var(--line);border-radius:19px;background:var(--surface);box-shadow:0 10px 32px #00000008}
+    .article{display:grid;grid-template-columns:112px minmax(0,1fr);gap:22px;padding:23px 26px;transition:background .18s}
+    .article+.article{border-top:1px solid var(--line)}.article:hover{background:var(--hover)}
+    .article time{padding-top:4px;color:var(--muted);font-size:11px;white-space:nowrap}
+    .article h3{margin:0 0 6px;font:650 19px/1.45 var(--serif);letter-spacing:-.02em}
+    .article h3 a{text-decoration:none}.article h3 a:hover{color:var(--accent-dark)}
+    .excerpt{display:-webkit-box;overflow:hidden;margin:0;color:var(--muted);font-size:13px;-webkit-box-orient:vertical;-webkit-line-clamp:2}
+    .tag-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+    .tag{padding:3px 9px;border:1px solid var(--line);border-radius:999px;color:var(--accent-dark);background:var(--soft);font-size:10px;line-height:1.6}
+    button.tag{cursor:pointer}.tag:hover,.tag.selected{border-color:var(--accent);background:var(--accent);color:#fff}
+    .featured{padding:24px;border:1px solid var(--line);border-radius:18px;background:var(--surface)}
+    .featured-label{color:var(--accent-dark);font-size:10px;font-weight:750;letter-spacing:.13em;text-transform:uppercase}
+    .featured h3{margin:8px 0;font:600 22px var(--serif)}.featured h3 a{text-decoration:none}.featured p{margin:0;color:var(--muted);font-size:13px}
+    .tag-cloud{display:flex;flex-wrap:wrap;gap:11px;padding:23px;border:1px solid var(--line);border-radius:18px;background:var(--surface)}
+    .tag-cloud .tag{padding:7px 13px;font-size:12px}.tag-count{margin-left:5px;opacity:.7}
+    .timeline{position:relative;margin-left:10px;padding-left:28px;border-left:1px solid var(--line)}
+    .timeline-year{position:relative;margin:0 0 17px;font:600 22px var(--serif)}
+    .timeline-year::before,.timeline-item::before{position:absolute;left:-34px;top:11px;width:11px;height:11px;border:3px solid var(--paper);border-radius:50%;background:var(--accent);content:""}
+    .timeline-item{position:relative;display:grid;grid-template-columns:105px minmax(0,1fr);gap:14px;padding:0 0 22px}
+    .timeline-item::before{left:-33px;top:8px;width:9px;height:9px;border:2px solid var(--accent);background:var(--paper)}
+    .timeline-item time{color:var(--muted);font-size:11px}.timeline-item a{font-weight:600;text-decoration:none}.timeline-item a:hover{color:var(--accent-dark)}
+    .about-card{display:grid;grid-template-columns:76px minmax(0,1fr);gap:20px;align-items:start;padding:26px;border:1px solid var(--line);border-radius:19px;background:var(--surface)}
+    .avatar{display:grid;place-items:center;width:70px;height:70px;border-radius:23px;color:#fff;background:linear-gradient(145deg,#33745b,#84ad8c);font:700 28px var(--serif)}
+    .about-card h3{margin:0 0 7px;font:600 21px var(--serif)}.about-card p{margin:0;color:var(--muted);font-size:13px}
+    .about-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:15px}.about-links a{color:var(--accent-dark);font-size:12px;text-decoration:none}
+    .loading,.empty,.error{padding:34px 20px;color:var(--muted);text-align:center;font-size:13px}
+    .error button{margin-left:8px;border:0;color:var(--accent-dark);background:transparent;text-decoration:underline;cursor:pointer}
+    .footer{padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:11px}
+    .footer a{color:var(--accent-dark);text-decoration:none}
+    @media(max-width:850px){.layout{grid-template-columns:1fr;gap:0;width:min(760px,100% - 36px)}.side{display:none}main{padding-top:18px}.mobile-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:17px}.mobile-top .brand{font-size:19px}.mobile-tools{display:flex;gap:7px}.stats{margin-bottom:46px}}
+    @media(max-width:560px){.layout{width:min(100% - 28px,760px)}.hero{padding:33px 24px;border-radius:22px}.hero h1{font-size:40px}.hero p{font-size:14px}.stats{gap:8px}.stat{padding:13px 10px}.stat strong{font-size:20px}.stat span{font-size:10px}.section-title{font-size:25px}.section-head{align-items:center}.section-note{display:none}.article{grid-template-columns:1fr;gap:4px;padding:20px}.article time{padding:0}.article h3{font-size:18px}.timeline-item{grid-template-columns:82px minmax(0,1fr);gap:8px}.about-card{grid-template-columns:54px minmax(0,1fr);gap:14px;padding:20px}.avatar{width:52px;height:52px;border-radius:17px;font-size:23px}.article-tools{gap:7px}.filter-reset{padding:0 9px}.section{margin-bottom:48px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important}}
   </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="wrap nav">
-      <a class="brand" href="#top" aria-label="Mecha 博客首页"><span class="brand-mark">M</span><span>Mecha<span style="color:var(--accent)">.</span></span></a>
-      <div class="nav-tools">
-        <span class="nav-note" data-i18n="navNote">写于 GitHub Issues 之上</span>
-        <button class="tool-button" id="language-toggle" type="button" aria-label="Switch to English" title="Switch to English">EN</button>
-        <button class="tool-button" id="theme-toggle" type="button" aria-label="切换为暗黑模式" title="切换为暗黑模式"><span id="theme-icon" aria-hidden="true">☾</span></button>
-      </div>
-    </div>
-  </header>
-  <main class="wrap" id="top">
-    <section class="hero" aria-labelledby="welcome-title">
-      <div class="eyebrow" data-i18n="eyebrow">Personal blog · Since 2026</div>
-      <h1 id="welcome-title" data-i18n="welcome">既见君子 ，云胡不喜</h1>
-      <p data-i18n="intro">在这里记录正在思考的事、正在经历的生活，以及那些值得分享的瞬间。愿文字让日常变得清晰，也让相遇发生。</p>
-      <div class="hero-meta"><span data-i18n="metaOne">慢慢写，认真生活</span><span data-i18n="metaTwo">随笔 · 记录 · 分享</span></div>
-    </section>
-    <section class="posts" aria-labelledby="posts-heading">
-      <div class="section-heading"><div><span class="section-kicker" data-i18n="kicker">From my notebook</span><h2 class="section-title" id="posts-heading" data-i18n="postsTitle">最近的文章</h2></div><span class="count" id="count" aria-live="polite"></span></div>
-      <div id="articles" class="status" aria-live="polite" data-i18n="loading">正在寻找最新的文字…</div>
-    </section>
-  </main>
-  <footer class="site-footer"><div class="wrap"><span data-i18n="footerSource">文章通过 <a href="https://github.com/mechatsvip/mechatsvip.github.io/issues">GitHub Issues</a> 发布</span><span>© <span id="year"></span> <span data-i18n="footerNote">Mecha · 慢慢写，认真生活</span></span></div></footer>
+  <div class="layout">
+    <aside class="side" aria-label="主导航">
+      <a class="brand" href="#home"><span class="brand-mark">M</span><span>Mecha.<small>慢慢写，认真生活</small></span></a>
+      <nav class="nav">
+        <a class="active" href="#home"><span class="nav-icon">⌂</span>首页</a>
+        <a href="#posts"><span class="nav-icon">▤</span>文章列表</a>
+        <a href="#tags"><span class="nav-icon">◇</span>标签</a>
+        <a href="#timeline"><span class="nav-icon">◷</span>时间线</a>
+        <a href="#about"><span class="nav-icon">☻</span>关于我</a>
+      </nav>
+      <div class="side-bottom"><p>记录想法与日常<br>愿文字让相遇发生。</p><div class="tools"><button class="tool theme-toggle" type="button" aria-label="切换深色模式" title="切换主题">☾</button><a class="tool" style="display:grid;place-items:center;text-decoration:none" href="https://github.com/mechatsvip" target="_blank" rel="noopener noreferrer" aria-label="GitHub">↗</a></div><p style="margin-top:16px">© <span class="year"></span> Mecha</p></div>
+    </aside>
+    <main>
+      <div class="mobile-top"><a class="brand" href="#home"><span class="brand-mark">M</span><span>Mecha.</span></a><div class="mobile-tools"><button class="tool theme-toggle" type="button" aria-label="切换深色模式" title="切换主题">☾</button></div></div>
+      <section class="hero" id="home">
+        <div class="eyebrow">Personal blog · Since 2026</div>
+        <h1>既见君子，<br>云胡不喜。</h1>
+        <p>在这里记录正在思考的事、正在经历的生活，以及那些值得分享的瞬间。愿文字让日常变得清晰，也让相遇发生。</p>
+        <div class="hero-actions"><a class="button primary" href="#posts">读读最近的文章 <span aria-hidden="true">→</span></a><a class="button" href="#about">认识一下我</a></div>
+      </section>
+      <div class="stats" aria-label="博客统计"><div class="stat"><strong id="article-count">—</strong><span>篇文章</span></div><div class="stat"><strong id="tag-count">—</strong><span>个标签</span></div><div class="stat"><strong id="start-year">2026</strong><span>开始记录</span></div></div>
+      <section class="section" aria-labelledby="featured-heading">
+        <div class="section-head"><div><span class="section-kicker">A little note</span><h2 class="section-title" id="featured-heading">最近在写</h2></div><a class="section-note" href="#posts">查看全部文章 →</a></div>
+        <div id="featured" class="featured"><div class="loading">正在载入文章…</div></div>
+      </section>
+      <section class="section" id="posts" aria-labelledby="posts-heading">
+        <div class="section-head"><div><span class="section-kicker">All stories</span><h2 class="section-title" id="posts-heading">文章列表</h2></div><span class="section-note" id="list-count">按发布时间排列</span></div>
+        <div class="article-tools"><input id="search" class="search" type="search" placeholder="搜索文章标题或内容…" aria-label="搜索文章"><button class="filter-reset" id="clear-filter" type="button">清除筛选</button></div>
+        <div class="filter-caption" id="filter-caption" aria-live="polite"></div>
+        <div id="articles" class="article-list"><div class="loading">正在寻找最新的文字…</div></div>
+      </section>
+      <section class="section" id="tags" aria-labelledby="tags-heading">
+        <div class="section-head"><div><span class="section-kicker">Topics</span><h2 class="section-title" id="tags-heading">标签</h2></div></div>
+        <div id="tag-cloud" class="tag-cloud"><div class="loading">文章载入后，这里会出现标签。</div></div>
+      </section>
+      <section class="section" id="timeline" aria-labelledby="timeline-heading">
+        <div class="section-head"><div><span class="section-kicker">Writing history</span><h2 class="section-title" id="timeline-heading">时间线</h2></div></div>
+        <div id="timeline-list" class="timeline"><div class="loading">正在整理时间线…</div></div>
+      </section>
+      <section class="section" id="about" aria-labelledby="about-heading">
+        <div class="section-head"><div><span class="section-kicker">About</span><h2 class="section-title" id="about-heading">关于我</h2></div></div>
+        <div class="about-card"><div class="avatar" aria-hidden="true">M</div><div><h3>你好，我是 Mecha。</h3><p>这是一个记录思考与日常的小小角落。我相信慢慢写、认真生活，也相信文字能让普通的瞬间留下痕迹。文章发布在 GitHub Issues，欢迎来读，也欢迎交流。</p><div class="about-links"><a href="https://github.com/mechatsvip" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://github.com/mechatsvip/mechatsvip.github.io/issues" target="_blank" rel="noopener noreferrer">所有文章 ↗</a></div></div></div>
+      </section>
+      <footer class="footer">文章通过 <a href="https://github.com/mechatsvip/mechatsvip.github.io/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a> 发布 · © <span class="year"></span> Mecha</footer>
+    </main>
+  </div>
   <script>
     const OWNER = 'mechatsvip';
     const REPO = 'mechatsvip.github.io';
     const API = `https://api.github.com/repos/${OWNER}/${REPO}/issues?state=all&per_page=100&sort=created&direction=desc`;
     const issueUrl = `https://github.com/${OWNER}/${REPO}/issues/`;
-    const root = document.getElementById('articles');
-    const translations = {
-      zh: {
-        navNote: '写于 GitHub Issues 之上', eyebrow: 'Personal blog · Since 2026', welcome: '既见君子 ，云胡不喜',
-        intro: '在这里记录正在思考的事、正在经历的生活，以及那些值得分享的瞬间。愿文字让日常变得清晰，也让相遇发生。',
-        metaOne: '慢慢写，认真生活', metaTwo: '随笔 · 记录 · 分享', kicker: 'From my notebook', postsTitle: '最近的文章',
-        loading: '正在寻找最新的文字…', emptyTitle: '第一篇文章，等你来写。', emptyText: '在仓库的 Issues 中新建一篇文章，它就会出现在这里。',
-        loadError: '文章暂时无法加载', tryAgain: '请稍后刷新，或直接前往 GitHub Issues 阅读。',
-        footerSource: '文章通过 <a href="https://github.com/mechatsvip/mechatsvip.github.io/issues">GitHub Issues</a> 发布',
-        footerNote: 'Mecha · 慢慢写，认真生活', themeLight: '切换为浅色模式', themeDark: '切换为暗黑模式',
-        languageLabel: 'Switch to English', count: n => `${n} 篇`, dateLocale: 'zh-CN'
-      },
-      en: {
-        navNote: 'Powered by GitHub Issues', eyebrow: 'Personal blog · Since 2026', welcome: 'Having met you, how could I not be glad?',
-        intro: 'A little place for thoughts, everyday life, and moments worth sharing. May these words bring clarity to ordinary days and make room for meaningful encounters.',
-        metaOne: 'Write slowly, live fully', metaTwo: 'Notes · Life · Stories', kicker: 'From my notebook', postsTitle: 'Recent posts',
-        loading: 'Looking for the latest stories…', emptyTitle: 'Your first post is waiting.', emptyText: 'Create a post in this repository’s Issues and it will appear here.',
-        loadError: 'Posts are temporarily unavailable', tryAgain: 'Please refresh later, or visit GitHub Issues to read them.',
-        footerSource: 'Posts published via <a href="https://github.com/mechatsvip/mechatsvip.github.io/issues">GitHub Issues</a>',
-        footerNote: 'Mecha · Write slowly, live fully', themeLight: 'Switch to light mode', themeDark: 'Switch to dark mode',
-        languageLabel: '切换为中文', count: n => `${n} posts`, dateLocale: 'en-US'
-      }
-    };
-    let language = 'zh';
-    let allIssues = [];
-    document.getElementById('year').textContent = new Date().getFullYear();
+    const $ = selector => document.querySelector(selector);
+    const $$ = selector => [...document.querySelectorAll(selector)];
+    let articles = [];
+    let selectedTag = '';
 
-    function applyLanguage() {
-      const words = translations[language];
-      document.documentElement.lang = language === 'zh' ? 'zh-CN' : 'en';
-      document.querySelectorAll('[data-i18n]').forEach(element => {
-        const key = element.dataset.i18n;
-        if (words[key] !== undefined) element.innerHTML = words[key];
-      });
-      const langButton = document.getElementById('language-toggle');
-      langButton.textContent = language === 'zh' ? 'EN' : '中文';
-      langButton.setAttribute('aria-label', words.languageLabel);
-      langButton.title = words.languageLabel;
-      if (allIssues.length || root.classList.contains('empty')) render(allIssues);
-    }
+    $$('.year').forEach(node => node.textContent = new Date().getFullYear());
 
-    function applyTheme() {
-      const dark = document.documentElement.dataset.theme === 'dark';
-      const button = document.getElementById('theme-toggle');
-      const label = dark ? translations[language].themeLight : translations[language].themeDark;
-      document.getElementById('theme-icon').textContent = dark ? '☀' : '☾';
-      button.setAttribute('aria-label', label);
-      button.title = label;
-      document.querySelector('meta[name="theme-color"]').content = dark ? '#151a17' : '#f6f7f2';
-    }
-
-    document.getElementById('language-toggle').addEventListener('click', () => {
-      language = language === 'zh' ? 'en' : 'zh';
-      applyLanguage();
-      applyTheme();
-    });
-    document.getElementById('theme-toggle').addEventListener('click', () => {
-      const theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    function setTheme(theme) {
       document.documentElement.dataset.theme = theme;
       try { localStorage.setItem('mecha-theme', theme); } catch (_) {}
-      applyTheme();
-    });
+      $$('.theme-toggle').forEach(button => {
+        button.textContent = theme === 'dark' ? '☀' : '☾';
+        button.setAttribute('aria-label', theme === 'dark' ? '切换浅色模式' : '切换深色模式');
+      });
+      $('meta[name="theme-color"]').content = theme === 'dark' ? '#151a17' : '#f6f7f2';
+    }
+    $$('.theme-toggle').forEach(button => button.addEventListener('click', () => setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark')));
+    setTheme(document.documentElement.dataset.theme || 'light');
 
     function escapeHtml(value) {
-      return String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+      return String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
     }
-    function inline(text) {
-      let out = escapeHtml(text);
-      out = out.replace(/`([^`]+)`/g, '<code>$1</code>')
-        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-        .replace(/\*(.+?)\*/g, '<em>$1</em>')
-        .replace(/~~(.+?)~~/g, '<del>$1</del>')
-        .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
-      return out;
+    function excerpt(text, max = 180) {
+      const plain = String(text || '').replace(/```[\s\S]*?```/g, ' ').replace(/[#>*_`~\[\]()]/g, ' ').replace(/https?:\/\/\S+/g, '').replace(/\s+/g, ' ').trim();
+      return plain.length > max ? `${plain.slice(0, max).trim()}…` : plain;
     }
-    function markdown(source) {
-      if (!source) return '';
-      const lines = source.replace(/\r/g, '').split('\n');
-      const html = [];
-      let paragraph = [], list = '', code = false, codeLines = [], quote = [];
-      const flushParagraph = () => { if (paragraph.length) { html.push(`<p>${paragraph.map(inline).join('<br>')}</p>`); paragraph = []; } };
-      const flushQuote = () => { if (quote.length) { html.push(`<blockquote><p>${quote.map(inline).join('<br>')}</p></blockquote>`); quote = []; } };
-      const flushList = () => { if (list) { html.push(`</${list}>`); list = ''; } };
-      for (const line of lines) {
-        if (/^\s*```/.test(line)) {
-          flushParagraph(); flushQuote(); flushList();
-          if (code) { html.push(`<pre><code>${escapeHtml(codeLines.join('\n'))}</code></pre>`); codeLines = []; }
-          code = !code;
-          continue;
-        }
-        if (code) { codeLines.push(line); continue; }
-        const heading = line.match(/^(#{1,3})\s+(.+)$/);
-        const item = line.match(/^\s*([-*+]\s+|\d+\.\s+)(.+)$/);
-        if (heading) {
-          flushParagraph(); flushQuote(); flushList();
-          const n = heading[1].length;
-          html.push(`<h${n}>${inline(heading[2])}</h${n}>`);
-        } else if (/^>\s?/.test(line)) {
-          flushParagraph(); flushList(); quote.push(line.replace(/^>\s?/, ''));
-        } else if (item) {
-          flushParagraph(); flushQuote();
-          const nextList = /^\d/.test(item[1]) ? 'ol' : 'ul';
-          if (list && list !== nextList) flushList();
-          if (!list) { list = nextList; html.push(`<${list}>`); }
-          html.push(`<li>${inline(item[2])}</li>`);
-        } else if (!line.trim()) {
-          flushParagraph(); flushQuote(); flushList();
-        } else {
-          flushQuote(); flushList(); paragraph.push(line);
-        }
+    function dateValue(value) { return new Date(value); }
+    function formatDate(value, options = {year:'numeric', month:'short', day:'numeric'}) {
+      return new Intl.DateTimeFormat('zh-CN', options).format(dateValue(value));
+    }
+    function tagNames(issue) { return (issue.labels || []).map(label => typeof label === 'string' ? label : label.name).filter(Boolean); }
+
+    function articleCard(issue) {
+      const tags = tagNames(issue).map(tag => `<button class="tag" type="button" data-tag="${escapeHtml(tag)}">${escapeHtml(tag)}</button>`).join('');
+      return `<article class="article"><time datetime="${escapeHtml(issue.created_at)}">${formatDate(issue.created_at)}</time><div><h3><a href="${issueUrl}${issue.number}" target="_blank" rel="noopener noreferrer">${escapeHtml(issue.title)}</a></h3><p class="excerpt">${escapeHtml(excerpt(issue.body) || '打开文章，继续阅读…')}</p>${tags ? `<div class="tag-row">${tags}</div>` : ''}</div></article>`;
+    }
+    function renderFeatured() {
+      const issue = articles[0];
+      if (!issue) { $('#featured').innerHTML = '<div class="empty">还没有文章，第一篇故事正在等待你。</div>'; return; }
+      $('#featured').innerHTML = `<span class="featured-label">Latest story · ${formatDate(issue.created_at)}</span><h3><a href="${issueUrl}${issue.number}" target="_blank" rel="noopener noreferrer">${escapeHtml(issue.title)}</a></h3><p>${escapeHtml(excerpt(issue.body, 240) || '打开文章，继续阅读…')}</p><div class="tag-row">${tagNames(issue).map(tag => `<button class="tag" type="button" data-tag="${escapeHtml(tag)}">${escapeHtml(tag)}</button>`).join('')}</div>`;
+    }
+    function renderPosts() {
+      const query = $('#search').value.trim().toLocaleLowerCase();
+      const filtered = articles.filter(issue => {
+        const matchesTag = !selectedTag || tagNames(issue).includes(selectedTag);
+        const matchesQuery = !query || `${issue.title} ${issue.body || ''}`.toLocaleLowerCase().includes(query);
+        return matchesTag && matchesQuery;
+      });
+      $('#list-count').textContent = `${filtered.length} / ${articles.length} 篇`;
+      $('#filter-caption').textContent = selectedTag ? `当前标签：${selectedTag}` : '';
+      $('#articles').innerHTML = filtered.length ? filtered.map(articleCard).join('') : '<div class="empty">没有找到匹配的文章，试试其他关键词或清除筛选。</div>';
+    }
+    function renderTags() {
+      const counts = new Map();
+      articles.forEach(issue => tagNames(issue).forEach(tag => counts.set(tag, (counts.get(tag) || 0) + 1)));
+      const tags = [...counts.entries()].sort((a,b) => b[1] - a[1] || a[0].localeCompare(b[0], 'zh-CN'));
+      $('#tag-count').textContent = tags.length;
+      $('#tag-cloud').innerHTML = tags.length ? tags.map(([tag,count]) => `<button type="button" class="tag${selectedTag === tag ? ' selected' : ''}" data-tag="${escapeHtml(tag)}">${escapeHtml(tag)}<span class="tag-count">${count}</span></button>`).join('') : '<div class="empty">暂时还没有文章标签。</div>';
+    }
+    function renderTimeline() {
+      if (!articles.length) { $('#timeline-list').innerHTML = '<div class="empty">文章载入后，时间线会在这里展开。</div>'; return; }
+      const groups = new Map();
+      articles.forEach(issue => {
+        const year = dateValue(issue.created_at).getFullYear();
+        if (!groups.has(year)) groups.set(year, []);
+        groups.get(year).push(issue);
+      });
+      $('#timeline-list').innerHTML = [...groups.entries()].map(([year,items]) => `<section class="timeline-group"><h3 class="timeline-year">${year}</h3>${items.map(issue => `<div class="timeline-item"><time datetime="${escapeHtml(issue.created_at)}">${formatDate(issue.created_at, {month:'long', day:'numeric'})}</time><a href="${issueUrl}${issue.number}" target="_blank" rel="noopener noreferrer">${escapeHtml(issue.title)}</a></div>`).join('')}</section>`).join('');
+      $('#start-year').textContent = Math.min(...[...groups.keys()]);
+    }
+    function renderAll() {
+      $('#article-count').textContent = articles.length;
+      renderFeatured(); renderPosts(); renderTags(); renderTimeline();
+    }
+    document.addEventListener('click', event => {
+      const tagButton = event.target.closest('[data-tag]');
+      if (tagButton) {
+        selectedTag = selectedTag === tagButton.dataset.tag ? '' : tagButton.dataset.tag;
+        renderPosts(); renderTags();
+        location.hash = 'posts';
       }
-      flushParagraph(); flushQuote(); flushList();
-      if (code) html.push(`<pre><code>${escapeHtml(codeLines.join('\n'))}</code></pre>`);
-      return html.join('\n');
+    });
+    $('#search').addEventListener('input', renderPosts);
+    $('#clear-filter').addEventListener('click', () => { selectedTag = ''; $('#search').value = ''; renderPosts(); renderTags(); });
+
+    const sections = $$('main section[id], main > .hero[id]');
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(entries => {
+        const visible = entries.filter(entry => entry.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (!visible) return;
+        $$('.nav a').forEach(link => link.classList.toggle('active', link.hash === `#${visible.target.id}`));
+      }, {rootMargin:'-20% 0px -65% 0px', threshold:[0,.2,.5]});
+      sections.forEach(section => observer.observe(section));
     }
-    function formatDate(value) {
-      return new Intl.DateTimeFormat(translations[language].dateLocale, {year:'numeric', month:'long', day:'numeric'}).format(new Date(value));
-    }
-    function render(issues) {
-      const words = translations[language];
-      const articles = issues.filter(item => !item.pull_request);
-      document.getElementById('count').textContent = words.count(articles.length);
-      if (!articles.length) {
-        root.className = 'empty';
-        root.innerHTML = `<strong>${words.emptyTitle}</strong>${words.emptyText}`;
-        return;
-      }
-      root.className = '';
-      root.innerHTML = articles.map(issue => `
-        <article class="post" id="issue-${issue.number}">
-          <time class="date" datetime="${escapeHtml(issue.created_at)}">${formatDate(issue.created_at)}</time>
-          <div><h3><a href="${issueUrl}${issue.number}" target="_blank" rel="noopener noreferrer">${escapeHtml(issue.title)}</a></h3>
-          <div class="article-body">${markdown(issue.body || '')}</div>
-          ${issue.labels?.length ? `<div class="tags">${issue.labels.map(label => `<span class="tag">${escapeHtml(label.name)}</span>`).join('')}</div>` : ''}
-          </div>
-        </article>`).join('');
-    }
-    applyLanguage();
-    applyTheme();
+
     fetch(API, {headers:{Accept:'application/vnd.github+json'}})
       .then(response => { if (!response.ok) throw new Error(`GitHub API ${response.status}`); return response.json(); })
-      .then(issues => { allIssues = issues; render(allIssues); })
+      .then(issues => { articles = issues.filter(item => !item.pull_request).sort((a,b) => dateValue(b.created_at) - dateValue(a.created_at)); renderAll(); })
       .catch(() => {
-        root.className = 'status error';
-        root.innerHTML = `${translations[language].loadError}. ${translations[language].tryAgain}`;
+        const message = '文章暂时无法加载，可能是 GitHub API 暂不可用。';
+        $('#featured').innerHTML = `<div class="error">${message}<button type="button" onclick="location.reload()">重试</button></div>`;
+        $('#articles').innerHTML = `<div class="error">${message}<button type="button" onclick="location.reload()">重试</button></div>`;
+        $('#tag-cloud').innerHTML = '<div class="empty">标签暂时无法载入。</div>';
+        $('#timeline-list').innerHTML = '<div class="empty">时间线暂时无法载入。</div>';
       });
   </script>
 </body>
