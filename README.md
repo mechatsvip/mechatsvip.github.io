@@ -5,7 +5,9 @@
 ## 文章目录
 
 
+
 <!-- articles:start -->
+- [AI 新闻每日摘要 · 2026-11-20](https://github.com/mechatsvip/mechatsvip.github.io/issues/10)
 - [Using dominance over subjugation](https://github.com/mechatsvip/mechatsvip.github.io/issues/8)
 - [Accepting critical voices](https://github.com/mechatsvip/mechatsvip.github.io/issues/7)
 - [If your ideas differ from those of the organization, don't consider it abnormal.](https://github.com/mechatsvip/mechatsvip.github.io/issues/6)
