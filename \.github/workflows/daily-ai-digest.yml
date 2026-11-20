@@ -28,4 +28,4 @@ jobs:
       - name: Fetch AI articles and publish Issue
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python scripts/daily_ai_digest.py
+        run: python .github/workflows/scripts/daily_ai_digest.py
