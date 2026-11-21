@@ -1,6 +1,6 @@
 # MeChat 的博客
 
-博客地址：[https://mechatsvip.github.io/](https://mechatsvip.github.io/)
+博客地址：[https://mechatxx.github.io/](https://mechatxx.github.io/)
 
 ## 本地预览
 
