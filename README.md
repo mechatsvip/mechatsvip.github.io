@@ -17,7 +17,9 @@ python3 -m http.server 8000
 
 
 
+
 <!-- articles:start -->
+- [AI 新闻每日摘要 · 2026-11-21](https://github.com/mechatxx/mechatxx.github.io/issues/11)
 - [AI 新闻每日摘要 · 2026-11-20](https://github.com/mechatxx/mechatxx.github.io/issues/10)
 - [Using dominance over subjugation](https://github.com/mechatxx/mechatxx.github.io/issues/8)
 - [Accepting critical voices](https://github.com/mechatxx/mechatxx.github.io/issues/7)
