@@ -16,8 +16,8 @@ from zoneinfo import ZoneInfo
 
 import feedparser
 
-OWNER = "mechatsvip"
-REPO = "mechatsvip.github.io"
+OWNER = "mechatxx"
+REPO = "mechatxx.github.io"
 API_ROOT = f"https://api.github.com/repos/{OWNER}/{REPO}"
 FEEDS = (
     ("Google News · AI", "https://news.google.com/rss/search?q=artificial+intelligence+OR+AI&hl=en-US&gl=US&ceid=US:en"),
