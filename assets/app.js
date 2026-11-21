@@ -3,7 +3,11 @@
 
   const OWNER = 'mechatxx';
   const REPO = 'mechatxx.github.io';
-  const API = `https://api.github.com/repos/${OWNER}/${REPO}/issues?state=all&per_page=100&sort=created&direction=desc`;
+  // Posts are pre-generated into assets/posts.json by scripts/update_readme_toc.py,
+  // so the page no longer depends on the 60/hour unauthenticated GitHub API limit.
+  // The cache-busting version is read from this script's own ?v= query string.
+  const assetVersion = new URL(document.currentScript?.src || '', location.href).searchParams.get('v');
+  const API = `assets/posts.json${assetVersion ? `?v=${assetVersion}` : ''}`;
   const ISSUE_URL = `https://github.com/${OWNER}/${REPO}/issues/`;
 
   const $ = (selector, root = document) => root.querySelector(selector);
@@ -201,8 +205,8 @@
   }
   async function loadPosts() {
     try {
-      const response = await fetch(API, {headers:{Accept:'application/vnd.github+json'}});
-      if (!response.ok) throw new Error(`GitHub API ${response.status}`);
+      const response = await fetch(API);
+      if (!response.ok) throw new Error(`posts data ${response.status}`);
       const issues = await response.json();
       posts = issues.filter(item => !item.pull_request).sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
       renderHome(); renderArticles(); renderTags(); renderTimeline();

@@ -10,7 +10,11 @@
 python3 -m http.server 8000
 ```
 
-然后访问 <http://localhost:8000/> 。页面通过 `assets/app.js` 调用 GitHub API 拉取 Issues 内容，本地预览时同样有效。
+然后访问 <http://localhost:8000/> 。文章数据来自构建时生成的 `assets/posts.json`，页面不再直接请求 GitHub API。
+
+### 静态资源版本号
+
+`assets/app.js` 在五个页面里都以 `?v=` 形式引用。修改 `app.js` 后，请把这些版本号统一换成一个新值（例如 `20261121b` → `20261121c`），否则浏览器可能继续使用旧缓存。
 
 ## 文章目录
 

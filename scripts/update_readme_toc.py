@@ -10,10 +10,11 @@ import sys
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
-OWNER = "mechatsvip"
-REPO = "mechatsvip.github.io"
+OWNER = "mechatxx"
+REPO = "mechatxx.github.io"
 API_URL = f"https://api.github.com/repos/{OWNER}/{REPO}/issues"
 README_PATH = "README.md"
+POSTS_PATH = "assets/posts.json"
 START = "<!-- articles:start -->"
 END = "<!-- articles:end -->"
 
@@ -88,11 +89,40 @@ def update_readme(articles: list[dict[str, object]]) -> bool:
     return True
 
 
+def export_posts(articles: list[dict[str, object]]) -> None:
+    """Write the fields the site needs to a static JSON file.
+
+    The front-end used to call the GitHub API directly, which is limited to 60
+    unauthenticated requests per hour and left the article list empty once
+    exhausted. Shipping the data with the site removes that dependency.
+    """
+    posts = [
+        {
+            "number": article["number"],
+            "title": article["title"],
+            "body": article.get("body") or "",
+            "created_at": article["created_at"],
+            "labels": [
+                label if isinstance(label, str) else label.get("name", "")
+                for label in article.get("labels") or []
+            ],
+            "html_url": article["html_url"],
+        }
+        for article in articles
+    ]
+    with open(POSTS_PATH, "w", encoding="utf-8", newline="\n") as posts_file:
+        json.dump(posts, posts_file, ensure_ascii=False, indent=2)
+        posts_file.write("\n")
+    print(f"Exported {len(posts)} posts to {POSTS_PATH}.")
+
+
 def main() -> None:
     token = os.environ.get("GITHUB_TOKEN")
     if not token:
         raise RuntimeError("GITHUB_TOKEN is required.")
-    update_readme(fetch_articles(token))
+    articles = fetch_articles(token)
+    update_readme(articles)
+    export_posts(articles)
 
 
 if __name__ == "__main__":
