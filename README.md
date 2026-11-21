@@ -16,14 +16,15 @@ python3 -m http.server 8000
 
 
 
+
 <!-- articles:start -->
-- [AI 新闻每日摘要 · 2026-11-20](https://github.com/mechatsvip/mechatsvip.github.io/issues/10)
-- [Using dominance over subjugation](https://github.com/mechatsvip/mechatsvip.github.io/issues/8)
-- [Accepting critical voices](https://github.com/mechatsvip/mechatsvip.github.io/issues/7)
-- [If your ideas differ from those of the organization, don't consider it abnormal.](https://github.com/mechatsvip/mechatsvip.github.io/issues/6)
-- [There is no need to be afraid of loneliness.](https://github.com/mechatsvip/mechatsvip.github.io/issues/5)
-- [Superman is the Earth](https://github.com/mechatsvip/mechatsvip.github.io/issues/4)
-- [Become a Superhuman](https://github.com/mechatsvip/mechatsvip.github.io/issues/3)
-- [Things have no distinction between surface and interior](https://github.com/mechatsvip/mechatsvip.github.io/issues/2)
-- [But I'm here](https://github.com/mechatsvip/mechatsvip.github.io/issues/1)
+- [AI 新闻每日摘要 · 2026-11-20](https://github.com/mechatxx/mechatxx.github.io/issues/10)
+- [Using dominance over subjugation](https://github.com/mechatxx/mechatxx.github.io/issues/8)
+- [Accepting critical voices](https://github.com/mechatxx/mechatxx.github.io/issues/7)
+- [If your ideas differ from those of the organization, don't consider it abnormal.](https://github.com/mechatxx/mechatxx.github.io/issues/6)
+- [There is no need to be afraid of loneliness.](https://github.com/mechatxx/mechatxx.github.io/issues/5)
+- [Superman is the Earth](https://github.com/mechatxx/mechatxx.github.io/issues/4)
+- [Become a Superhuman](https://github.com/mechatxx/mechatxx.github.io/issues/3)
+- [Things have no distinction between surface and interior](https://github.com/mechatxx/mechatxx.github.io/issues/2)
+- [But I'm here](https://github.com/mechatxx/mechatxx.github.io/issues/1)
 <!-- articles:end -->
