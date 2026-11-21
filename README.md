@@ -22,6 +22,7 @@ python3 -m http.server 8000
 
 
 
+
 <!-- articles:start -->
 - [AI 新闻每日摘要 · 2026-11-21](https://github.com/mechatxx/mechatxx.github.io/issues/11)
 - [AI 新闻每日摘要 · 2026-11-20](https://github.com/mechatxx/mechatxx.github.io/issues/10)
