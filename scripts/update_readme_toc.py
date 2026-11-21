@@ -62,7 +62,7 @@ def update_readme(articles: list[dict[str, object]]) -> bool:
     with open(README_PATH, encoding="utf-8") as readme_file:
         readme = readme_file.read()
 
-    section = re.search(r"(?m)^## 文章目录\s*$", readme)
+    section = re.search(r"(?m)^## 文章目录[ \t]*$", readme)
     if not section:
         raise RuntimeError("README.md is missing the '## 文章目录' heading.")
 
