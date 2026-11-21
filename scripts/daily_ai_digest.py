@@ -38,7 +38,7 @@ def github_request(path: str, token: str, method: str = "GET", payload: dict | N
             "Accept": "application/vnd.github+json",
             "Authorization": f"Bearer {token}",
             "X-GitHub-Api-Version": "2022-11-28",
-            "User-Agent": "mechatsvip-daily-ai-digest",
+            "User-Agent": "mechatxx-daily-ai-digest",
             **({"Content-Type": "application/json"} if data is not None else {}),
         },
     )
@@ -71,7 +71,7 @@ def collect_items(now_utc: datetime) -> list[dict[str, str]]:
     seen: set[str] = set()
     for source, feed_url in FEEDS:
         try:
-            feed = feedparser.parse(feed_url, request_headers={"User-Agent": "mechatsvip-daily-ai-digest/1.0"})
+            feed = feedparser.parse(feed_url, request_headers={"User-Agent": "mechatxx-daily-ai-digest/1.0"})
             if feed.bozo and not feed.entries:
                 print(f"Warning: could not read {source}: {feed.bozo_exception}", file=sys.stderr)
                 continue

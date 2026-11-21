@@ -29,7 +29,7 @@ def fetch_articles(token: str) -> list[dict[str, object]]:
                 "Accept": "application/vnd.github+json",
                 "Authorization": f"Bearer {token}",
                 "X-GitHub-Api-Version": "2022-11-28",
-                "User-Agent": "mechatsvip-readme-article-index",
+                "User-Agent": "mechatxx-readme-article-index",
             },
         )
         try:
